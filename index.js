@@ -1,13 +1,13 @@
 module.exports = (api, options) =>{
     console.log("load plugin service!!!")
     api.registerCommand(
-        'greet',
+        'deploy',
         {
-            description: 'Write a greeting to the console',
-            usage: 'vue-cli-service greet'
+            description: 'deploy to o2 server',
+            usage: 'vue-cli-service deploy'
         },
         () => {
-            console.log(`👋  Hello`)
+            console.log(`👋  deploy to o2 server`)
         }
     )
 }
