@@ -1,4 +1,4 @@
-module.exports = (api, option) => {
+module.exports = (api, option, rootOptions) => {
     api.render('./template');
     api.extendPackage({
         "dependencies": {
@@ -7,5 +7,21 @@ module.exports = (api, option) => {
         "devDependencies": {
             "@o2oa/component-devserever": "^1.0.8"
         }
-    })
+    });
+
+    let projectPath = rootOptions.projectName;
+    projectPath = projectPath.replace(/\./g, "_");
+    api.postProcessFiles((list)=>{
+        const nameList = Object.keys(list);
+        nameList.forEach((k)=>{
+            const cmptName = k.replace(/x_component/, 'x_component_'+projectPath);
+            if (cmptName!==k){
+                list[cmptName] = list[k];
+                delete list[k];
+            }
+        });
+
+
+
+    });
 }

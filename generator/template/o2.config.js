@@ -1,9 +1,9 @@
 module.exports = {
     "server": {
-        "host": "",
-        "port": "20030",
-        "httpPort": "80",
-        "https": false
+        "host": "<%= options.o2serverHost %>",
+        "port": "<%= options.o2serverCenterPort %>",
+        "httpPort": "<%= options.o2serverWebPort %>",
+        "https": <%= options.isHttps %>
     },
-    "components": []
+    "components": ('<%= options.o2Components %>').split(/\s*\,\s*/g)
 }
