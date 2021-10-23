@@ -1,3 +1,3 @@
-MWF.xApplication.<%= componentName %>.LP = {
-    "title": "<%= componentName %>"
+MWF.xApplication.name.LP = {
+    "title": "name"
 };
