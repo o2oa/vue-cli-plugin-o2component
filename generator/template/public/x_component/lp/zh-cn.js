@@ -1,3 +1,3 @@
-MWF.xApplication.name.LP = {
-    "title": "name"
+MWF.xApplication["<%= rootOptions.projectName %>"].LP = {
+    "title": "<%= rootOptions.projectName %>"
 };
