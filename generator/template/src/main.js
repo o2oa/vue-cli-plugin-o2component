@@ -1,7 +1,7 @@
 import {loadComponent} from '@o2oa/web-component';
 import App from "@/App";
 
-const name = '<%= componentName %>';
+const name = '<%= rootOptions.componentName %>';
 loadComponent(name, App).then((c)=>{
     c.render();
 });
