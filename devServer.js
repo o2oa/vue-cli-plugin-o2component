@@ -6,8 +6,8 @@ const server = config.server;
 
 const host = `${(server.https) ? 'https' : 'http'}://${server.host}/${(!server.httpPort || server.httpPort==='80') ? '' : server.httpPort}`;
 const proxy = {};
-(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_Common', 'x_component_Template']).forEach((path)=>{
-    proxy['/'+path] = {target: host}
+(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_']).forEach((path)=>{
+    proxy['^/'+path] = {target: host}
 });
 
 let before = function(app){
