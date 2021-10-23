@@ -1,5 +1,4 @@
 module.exports = (api, options) =>{
-    console.log("load plugin service!!!")
     api.registerCommand(
         'deploy',
         {
