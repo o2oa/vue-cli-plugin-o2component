@@ -1,12 +1,16 @@
 const path = require('path');
-var needle = require('needle');
+const needle = require('needle');
+const fs = require('fs/promises');
+
 const p = path.resolve(process.cwd(), './o2.config.js');
 const config = require(p);
 const server = config.server;
+const pkg = require(path.resolve(process.cwd(), './package.json'));
+const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
 
 const host = `${(server.https) ? 'https' : 'http'}://${server.host}/${(!server.httpPort || server.httpPort==='80') ? '' : server.httpPort}`;
 const proxy = {};
-(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_']).forEach((path)=>{
+(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_[!'+componentPath+']']).forEach((path)=>{
     proxy['^/'+path] = {target: host}
 });
 
@@ -28,6 +32,16 @@ let before = function(app){
             }else {
                 res.send(res);
             }
+        });
+    });
+    app.get(`/${componentPath}/lp/*min.*`, function(req, res) {
+        let toUrl = req._parsedUrl.pathname.replace(/min\./, '');
+        toUrl = path.resolve(process.cwd()+'\\public', './'+toUrl);
+        fs.readFile(toUrl).then((data)=>{
+            res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+            res.send(data);
+        }, ()=>{
+            res.send('');
         });
     });
 }
