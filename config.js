@@ -45,8 +45,14 @@ let before = function(app){
         });
     });
 }
+
 module.exports = {
-    before: before,
-    proxy: proxy,
-    open: true
+    publicPath: "../"+componentPath+"/",
+    outputDir: "./dist/"+componentPath,
+    assetsDir: "$Main",
+    devServer: {
+        before: before,
+        proxy: proxy,
+        open: true
+    }
 }
