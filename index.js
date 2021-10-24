@@ -1,5 +1,3 @@
-const action = require('@o2oa/action');
-
 module.exports = (api, options) =>{
     api.registerCommand(
         'deploy',
