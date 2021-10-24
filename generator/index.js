@@ -9,16 +9,16 @@ module.exports = (api, option, rootOptions) => {
         }
     });
 
-    let projectPath = rootOptions.projectName;
-    projectPath = projectPath.replace(/\./g, '_');
-    api.postProcessFiles((list)=>{
-        const nameList = Object.keys(list);
-        nameList.forEach((k)=>{
-            const cmptName = k.replace(/\/x_component\//, '/x_component_'+projectPath+'/');
-            if (cmptName!==k){
-                list[cmptName] = list[k];
-                delete list[k];
-            }
-        });
-    });
+    // let projectPath = rootOptions.projectName;
+    // projectPath = projectPath.replace(/\./g, '_');
+    // api.postProcessFiles((list)=>{
+    //     const nameList = Object.keys(list);
+    //     nameList.forEach((k)=>{
+    //         const cmptName = k.replace(/\/x_component\//, '/x_component_'+projectPath+'/');
+    //         if (cmptName!==k){
+    //             list[cmptName] = list[k];
+    //             delete list[k];
+    //         }
+    //     });
+    // });
 }

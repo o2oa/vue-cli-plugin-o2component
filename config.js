@@ -35,8 +35,8 @@ let before = function(app){
         });
     });
     app.get(`/${componentPath}/lp/*min.*`, function(req, res) {
-        let toUrl = req._parsedUrl.pathname.replace(/min\./, '');
-        toUrl = path.resolve(process.cwd()+'\\public', './'+toUrl);
+        let toUrl =  path.basename(req._parsedUrl.pathname).replace(/min\./, '')
+        toUrl = path.resolve(process.cwd()+'\\public', './lp'+toUrl);
         fs.readFile(toUrl).then((data)=>{
             res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
             res.send(data);
