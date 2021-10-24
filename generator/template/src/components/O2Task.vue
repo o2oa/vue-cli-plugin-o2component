@@ -16,7 +16,7 @@
       </tr>
     </table>
     <br>
-    <button @click="openHomepage">Open Homepage</button>
+    <button @click="openCalendar">Open Calendar</button>
     <button @click="openOrganization">Open Organization</button>
     <button @click="startProcess">Start Process</button>
   </div>
@@ -35,8 +35,8 @@ export default {
     openTask(id){
       layout.openApplication(null, "process.Work", {"workid": id});
     },
-    openHomepage(){
-      layout.openApplication(null, "Homepage");
+    openCalendar(){
+      layout.openApplication(null, "Calendar");
     },
     openOrganization(){
       layout.openApplication(null, "Org");
