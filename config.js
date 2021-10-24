@@ -47,7 +47,7 @@ let before = function(app){
 }
 
 module.exports = {
-    publicPath: "../"+componentPath+"/",
+    publicPath:  process.env.NODE_ENV === 'production' ? "../"+componentPath+"/" : "/"+componentPath+"/",
     outputDir: "./dist/"+componentPath,
     assetsDir: "$Main",
     devServer: {
