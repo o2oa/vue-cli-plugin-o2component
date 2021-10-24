@@ -1,6 +1,7 @@
 const path = require('path');
 const needle = require('needle');
 const fs = require('fs/promises');
+const componentPlugin = require('compilerPlugin');
 
 const p = path.resolve(process.cwd(), './o2.config.js');
 const config = require(p);
@@ -54,5 +55,10 @@ module.exports = {
         before: before,
         proxy: proxy,
         open: true
+    },
+    configureWebpack: {
+        plugins: [
+            new componentPlugin()
+        ]
     }
 }
