@@ -10,7 +10,7 @@ const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
 
 const host = `${(server.https) ? 'https' : 'http'}://${server.host}/${(!server.httpPort || server.httpPort==='80') ? '' : server.httpPort}`;
 const proxy = {};
-(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_[!'+componentPath+']']).forEach((path)=>{
+(config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_']).forEach((path)=>{
     proxy['^/'+path] = {target: host}
 });
 
