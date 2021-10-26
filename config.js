@@ -7,7 +7,8 @@ const p = path.resolve(process.cwd(), './o2.config.js');
 const config = require(p);
 const server = config.server;
 const pkg = require(path.resolve(process.cwd(), './package.json'));
-const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
+const componentPath = pkg.name;
+//const componentName = componentPath.replace('x_component_', '').split('_').join('.');
 
 const host = `${(server.https) ? 'https' : 'http'}://${server.host}/${(!server.httpPort || server.httpPort==='80') ? '' : server.httpPort}`;
 const proxy = {};

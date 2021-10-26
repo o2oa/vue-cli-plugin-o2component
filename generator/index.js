@@ -1,5 +1,7 @@
 module.exports = (api, option, rootOptions) => {
-    api.render('./template');
+    const name = rootOptions.projectName;
+    rootOptions.o2componentName = name.replace('x_component_', '').split('_').join('.');
+        api.render('./template');
     api.extendPackage({
         'dependencies': {
             '@o2oa/web-component': '^1.1.0'

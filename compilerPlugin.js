@@ -2,7 +2,9 @@ const config = require('@o2oa/vue-cli-plugin-o2component/config');
 const UglifyJS = require("uglify-js");
 const path = require('path');
 const pkg = require(path.resolve(process.cwd(), './package.json'));
-const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
+const componentPath = pkg.name;
+//const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
+const componentName = componentPath.replace('x_component_', '').split('_').join('.');
 
 function compilerO2ComponentPlugin(options) {}
 
@@ -22,7 +24,7 @@ compilerO2ComponentPlugin.prototype.apply = function(compiler) {
     compiler.plugin('emit', function(compilation, callback) {
         const fileList = Object.keys(compilation.assets);
 
-        let mainFileContent = `o2.component("${pkg.name}", {\n`;
+        let mainFileContent = `o2.component("${componentName}", {\n`;
 
         const css = includeMain(fileList, '$Main/css', '.css');
         if (css) mainFileContent += `    css: [${css}],\n`;

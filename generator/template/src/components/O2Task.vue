@@ -19,6 +19,8 @@
     <button @click="openCalendar">Open Calendar</button>
     <button @click="openOrganization">Open Organization</button>
     <button @click="startProcess">Start Process</button>
+    <br>
+    <button @click="openInBrowser">Open In Browser</button>
   </div>
 </template>
 
@@ -40,6 +42,10 @@ export default {
     },
     openOrganization(){
       layout.openApplication(null, "Org");
+    },
+    openInBrowser() {
+      const cmpt = this.$root.$options.o2component;
+      cmpt.openInNewBrowser(true);
     },
     startProcess(){
       const cmpt = this.$root.$options.o2component;

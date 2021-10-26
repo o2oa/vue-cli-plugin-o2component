@@ -1,3 +1,3 @@
-MWF.xApplication.<%= rootOptions.projectName %>.LP = {
-    "title": "<%= rootOptions.projectName %>"
+MWF.xApplication.<%= rootOptions.o2componentName %>.LP = {
+    "title": "<%= rootOptions.o2componentName %>"
 }
