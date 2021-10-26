@@ -7,7 +7,7 @@ module.exports = (api, option, rootOptions) => {
             '@o2oa/web-component': '^1.1.0'
         },
         'scripts': {
-            'o2-deploy': 'vue-cli-service build --dest ../../dest/'+rootOptions.projectName,
+            'o2-deploy': 'vue-cli-service build',
             'deploy': 'vue-cli-service build && vue-cli-service deploy'
         }
     });
