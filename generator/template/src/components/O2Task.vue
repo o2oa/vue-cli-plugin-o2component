@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
 
-    <h3>Here are your top 5 task</h3>
+    <h3>{{lp.taskListTitle}}</h3>
     <br>
     <table align="center" class="taskListTable" border="1">
       <tr>
-        <th>Title</th>
-        <th>Process</th>
-        <th>Time</th>
+        <th>{{lp.taskTitle}}</th>
+        <th>{{lp.taskProcess}}</th>
+        <th>{{lp.taskTime}}</th>
       </tr>
       <tr v-for="task in taskList">
         <td><a href="#" @click="openTask(task.work)">{{task.title}}</a></td>
@@ -16,11 +16,11 @@
       </tr>
     </table>
     <br>
-    <button @click="openCalendar">Open Calendar</button>
-    <button @click="openOrganization">Open Organization</button>
-    <button @click="startProcess">Start Process</button>
+    <button @click="openCalendar">{{lp.openCalendar}}</button>
+    <button @click="openOrganization">{{lp.openOrganization}}</button>
+    <button @click="startProcess">{{lp.startProcess}}</button>
     <br>
-    <button @click="openInBrowser">Open In Browser</button>
+    <button @click="openInBrowser">{{lp.openInBrowser}}</button>
   </div>
 </template>
 
@@ -29,8 +29,10 @@ import {o2, layout} from '@o2oa/web-component'
 export default {
   name: 'HelloWorld',
   data(){
+    const cmpt = this.$root.$options.o2component;
     return {
-      taskList: []
+      taskList: [],
+      lp: cmpt.lp
     }
   },
   methods: {
