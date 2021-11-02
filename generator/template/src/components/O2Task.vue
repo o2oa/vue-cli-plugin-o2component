@@ -25,43 +25,39 @@
   </div>
 </template>
 
+<script setup>
+import {ref, inject} from 'vue'
+
+const lp = inject('lp');
+const taskList = ref([]);
+
+function openTask(id){
+  o2.api.page.openWork(id);
+}
+function openCalendar(){
+  o2.api.page.openApplication("Calendar");
+}
+function openOrganization(){
+  o2.api.page.openApplication("Org");
+}
+function openInBrowser() {
+  const cmpt = this.$root.$options.o2component;
+  cmpt.openInNewBrowser(true);
+}
+function startProcess(){
+  o2.api.page.startProcess();
+}
+function createDocument(){
+  o2.api.page.createDocument();
+}
+
+loadTaskList(taskList);
+</script>
+
 <script>
-import {o2} from '@o2oa/web-component'
-export default {
-  name: 'HelloWorld',
-  data(){
-    const cmpt = this.$root.$options.o2component;
-    return {
-      taskList: [],
-      lp: cmpt.lp
-    }
-  },
-  methods: {
-    openTask(id){
-      o2.api.page.openWork(id);
-    },
-    openCalendar(){
-      o2.api.page.openApplication("Calendar");
-    },
-    openOrganization(){
-      o2.api.page.openApplication("Org");
-    },
-    openInBrowser() {
-      const cmpt = this.$root.$options.o2component;
-      cmpt.openInNewBrowser(true);
-    },
-    startProcess(){
-      o2.api.page.startProcess();
-    },
-    createDocument(){
-      o2.api.page.createDocument();
-    }
-  },
-  created(){
-    o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5, null).then((json)=>{
-      this.$data.taskList = json.data;
-    });
-  }
+async function loadTaskList(taskList){
+  const json = await o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5);
+  taskList.value = json.data;
 }
 </script>
 
