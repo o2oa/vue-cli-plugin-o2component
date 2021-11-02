@@ -37,46 +37,48 @@ export default {
   },
   methods: {
     openTask(id){
-      layout.openApplication(null, "process.Work", {"workid": id});
+      o2.page.openWork(id);
+      //layout.openApplication(null, "process.Work", {"workid": id});
     },
     openCalendar(){
-      layout.openApplication(null, "Calendar");
+      o2.page.openApplication("Calendar");
     },
     openOrganization(){
-      layout.openApplication(null, "Org");
+      o2.page.openApplication("Org");
     },
     openInBrowser() {
       const cmpt = this.$root.$options.o2component;
       cmpt.openInNewBrowser(true);
     },
     startProcess(){
-      const cmpt = this.$root.$options.o2component;
-      o2.requireApp([["process.TaskCenter", "lp."+o2.language], ["process.TaskCenter", ""]],"", ()=>{
-        var obj = {
-          "lp": o2.xApplication.process.TaskCenter.LP,
-          "content": cmpt.content,
-          "addEvent": function(type, fun){
-            cmpt.addEvent(type, fun);
-          },
-          "getAction": function (callback) {
-            if (!this.action) {
-              this.action = o2.Actions.get("x_processplatform_assemble_surface");
-              if (callback) callback();
-            } else {
-              if (callback) callback();
-            }
-          },
-          "desktop": layout.desktop,
-          "refreshAll": function(){},
-          "notice": cmpt.notice,
-        }
-        o2.JSON.get("../x_component_process_TaskCenter/$Main/default/css.wcss", function(data){
-          obj.css = data;
-        }, false);
-
-        if (!cmpt.processStarter) cmpt.processStarter = new o2.xApplication.process.TaskCenter.Starter(obj);
-        cmpt.processStarter.load();
-      }, true, true);
+      o2.page.startProcess();
+      // const cmpt = this.$root.$options.o2component;
+      // o2.requireApp([["process.TaskCenter", "lp."+o2.language], ["process.TaskCenter", ""]],"", ()=>{
+      //   var obj = {
+      //     "lp": o2.xApplication.process.TaskCenter.LP,
+      //     "content": cmpt.content,
+      //     "addEvent": function(type, fun){
+      //       cmpt.addEvent(type, fun);
+      //     },
+      //     "getAction": function (callback) {
+      //       if (!this.action) {
+      //         this.action = o2.Actions.get("x_processplatform_assemble_surface");
+      //         if (callback) callback();
+      //       } else {
+      //         if (callback) callback();
+      //       }
+      //     },
+      //     "desktop": layout.desktop,
+      //     "refreshAll": function(){},
+      //     "notice": cmpt.notice,
+      //   }
+      //   o2.JSON.get("../x_component_process_TaskCenter/$Main/default/css.wcss", function(data){
+      //     obj.css = data;
+      //   }, false);
+      //
+      //   if (!cmpt.processStarter) cmpt.processStarter = new o2.xApplication.process.TaskCenter.Starter(obj);
+      //   cmpt.processStarter.load();
+      // }, true, true);
     }
   },
   created(){
