@@ -19,6 +19,7 @@
     <button @click="openCalendar">{{lp.openCalendar}}</button>
     <button @click="openOrganization">{{lp.openOrganization}}</button>
     <button @click="startProcess">{{lp.startProcess}}</button>
+    <button @click="createDocument">{{lp.createDocument}}</button>
     <br>
     <button @click="openInBrowser">{{lp.openInBrowser}}</button>
   </div>
@@ -51,6 +52,9 @@ export default {
     },
     startProcess(){
       o2.api.page.startProcess();
+    },
+    createDocument(){
+      o2.api.page.createDocument();
     }
   },
   created(){
