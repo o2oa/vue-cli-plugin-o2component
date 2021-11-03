@@ -4,7 +4,7 @@ module.exports = (api, option, rootOptions) => {
         api.render('./template');
     api.extendPackage({
         'dependencies': {
-            '@o2oa/web-component': '^1.1.0'
+            '@o2oa/component': '^1.1.0'
         },
         'scripts': {
             'o2-deploy': 'vue-cli-service build',
