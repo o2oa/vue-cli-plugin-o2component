@@ -1,5 +1,5 @@
 <template>
-  <img class="logo" alt="O2OA logo" src="./assets/o2logo.png">
+  <img class="logo" alt="O2OA logo" src="../assets/o2logo.png">
   <div class="hello">
     <h1>{{ lp.welcome }} </h1>
     <p>
@@ -18,7 +18,7 @@
 
 <script setup>
 import {inject}  from 'vue'
-import O2Task from './components/O2Task.vue'
+import O2Task from './O2Task.vue'
 const lp = inject('lp');
 
 defineProps({

@@ -1,10 +1,9 @@
 ---
-extend: '@o2oa/component/generator/template/src/App.vue'
+extend: '@vue/cli-service/generator/template/src/App.vue'
 replace:
-  - !!js/regexp /<style>[^]*?<style>/
+  - !!js/regexp /\#app\s\{[^]*?<\/style>/
 ---
 
 <%# REPLACE %>
-<style>
 </style>
 <%# END_REPLACE %>
