@@ -1,8 +1,7 @@
 import { createApp } from 'vue';
-import App from "@/App";
+import App from "./App.vue";
 import {loadComponent} from '@o2oa/component';
 
-const name = '<%= rootOptions.o2componentName %>';
-loadComponent(name, createApp(App)).then((c)=>{
+loadComponent('<%= rootOptions.o2componentName %>', ()=>createApp(App)).then((c)=>{
     c.render();
 });
