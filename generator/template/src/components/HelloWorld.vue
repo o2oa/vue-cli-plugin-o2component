@@ -1,6 +1,7 @@
 <template>
+  <img class="logo" alt="O2OA logo" src="./assets/o2logo.png">
   <div class="hello">
-    <h1>{{ msg }} </h1>
+    <h1>{{ lp.welcome }} </h1>
     <p>
       For more O2OA development document,<br>
       check out the
@@ -12,9 +13,14 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
   </div>
+  <O2Task/>
 </template>
 
 <script setup>
+import {inject}  from 'vue'
+import O2Task from './components/O2Task.vue'
+const lp = inject('lp');
+
 defineProps({
   msg: String
 });
@@ -35,5 +41,9 @@ li {
 }
 a {
   color: #42b983;
+}
+.logo {
+  width: 200px;
+  height: 200px;
 }
 </style>

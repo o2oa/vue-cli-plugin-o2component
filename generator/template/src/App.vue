@@ -1,22 +1,10 @@
-<template>
-  <div style="text-align: center">
-    <img class="logo" alt="O2OA logo" src="./assets/o2logo.png">
-    <img class="logo" alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld :msg="lp.welcome"/>
-    <O2Task/>
-  </div>
-</template>
+---
+extend: '@o2oa/component/generator/template/src/App.vue'
+replace:
+  - !!js/regexp /<style>[^]*?<style>/
+---
 
-<script setup>
-import {inject}  from 'vue'
-import O2Task from './components/O2Task.vue'
-import HelloWorld from './components/HelloWorld.vue'
-const lp = inject('lp');
-</script>
-
+<%# REPLACE %>
 <style>
-.logo {
-  width: 200px;
-  height: 200px;
-}
 </style>
+<%# END_REPLACE %>

@@ -30,7 +30,11 @@ import {ref, inject} from 'vue'
 import {o2} from '@o2oa/component'
 
 const lp = inject('lp');
+
 const taskList = ref([]);
+o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5).then((json)=>{
+  taskList.value = json.data;
+});
 
 function openTask(id){
   o2.api.page.openWork(id);
@@ -50,15 +54,6 @@ function startProcess(){
 }
 function createDocument(){
   o2.api.page.createDocument();
-}
-
-loadTaskList(taskList);
-</script>
-
-<script>
-async function loadTaskList(taskList){
-  const json = await o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5);
-  taskList.value = json.data;
 }
 </script>
 
