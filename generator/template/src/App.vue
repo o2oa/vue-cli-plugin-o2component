@@ -1,4 +1,4 @@
-cd <template>
+<template>
   <div style="text-align: center">
     <img class="logo" alt="O2OA logo" src="./assets/o2logo.png">
     <img class="logo" alt="Vue logo" src="./assets/logo.png">

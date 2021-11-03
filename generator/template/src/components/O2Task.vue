@@ -27,6 +27,7 @@
 
 <script setup>
 import {ref, inject} from 'vue'
+import {o2} from '@o2oa/component'
 
 const lp = inject('lp');
 const taskList = ref([]);
