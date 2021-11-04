@@ -26,10 +26,8 @@
 </template>
 
 <script setup>
-import {ref, inject} from 'vue'
-import {o2} from '@o2oa/component'
-
-const lp = inject('lp');
+import {ref} from 'vue'
+import {o2, lp} from '@o2oa/component'
 
 const taskList = ref([]);
 o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5).then((json)=>{

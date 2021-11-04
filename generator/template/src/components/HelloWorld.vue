@@ -18,8 +18,8 @@
 
 <script setup>
 import {inject}  from 'vue'
+import {lp} from '@o2oa/componet'
 import O2Task from './O2Task.vue'
-const lp = inject('lp');
 
 defineProps({
   msg: String
