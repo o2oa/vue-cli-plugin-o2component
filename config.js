@@ -1,5 +1,5 @@
 const path = require('path');
-const needle = require('needle');
+const axios = require('axios');
 const fs = require('fs/promises');
 const componentPlugin = require('./compilerPlugin');
 
@@ -17,23 +17,29 @@ const proxy = {};
 });
 
 let before = function(app){
+    app.use(function(req, res, next){
+        if(req.url.indexOf('/'+componentPath+'/')!==-1 ){
+            req.url = req.url.replace('/'+componentPath+'/', '/');
+        }
+        next();
+    });
     app.get('/x_desktop/res/config/config.json', function(req, res) {
-        const configUrl = new URL(req.url, host)
-        needle.get(configUrl.toString(), function(error, response) {
-            if (!error && response.statusCode === 200){
-                let o2Config = response.body;
-                o2Config.sessionStorageEnable = true;
-                o2Config.applicationServer = {
-                    "host": (config.appServer && config.appServer.host) ? config.appServer.host : server.host
-                };
-                o2Config.center = [{
-                    "port": server.port,
-                    "host": server.host
-                }];
-                res.json(o2Config);
-            }else {
-                res.send(res);
-            }
+        const configUrl = new URL(req.url, host);
+        axios.get(configUrl.toString()).then((json)=>{
+            let o2Config = json.data;
+            o2Config.sessionStorageEnable = true;
+            o2Config.applicationServer = {
+                "host": (config.appServer && config.appServer.host) ? config.appServer.host : server.host
+            };
+            o2Config.center = [{
+                "port": server.port,
+                "host": server.host
+            }];
+            o2Config.proxyApplicationEnable = false;
+            o2Config.proxyCenterEnable = false;
+            res.json(o2Config);
+        }).catch(()=>{
+            res.end();
         });
     });
     app.get(`/${componentPath}/lp/*min.*`, function(req, res) {

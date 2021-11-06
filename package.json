@@ -1,6 +1,6 @@
 {
   "name": "@o2oa/vue-cli-plugin-o2component",
-  "version": "1.0.59",
+  "version": "1.0.60",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
   "author": "Tommy",
   "license": "MIT",
   "dependencies": {
-    "needle": "^3.0.0"
+    "axios": "^0.24.0"
   }
 }

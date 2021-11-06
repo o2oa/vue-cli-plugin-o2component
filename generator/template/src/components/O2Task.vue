@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="o2task">
 
     <h3>{{lp.taskListTitle}}</h3>
     <br>
@@ -27,7 +27,7 @@
 
 <script setup>
 import {ref} from 'vue'
-import {o2, lp} from '@o2oa/component'
+import {o2, lp, component} from '@o2oa/component'
 
 const taskList = ref([]);
 o2.Actions.load("x_processplatform_assemble_surface").TaskAction.V2ListPaging(1, 5).then((json)=>{
@@ -44,8 +44,7 @@ function openOrganization(){
   o2.api.page.openApplication("Org");
 }
 function openInBrowser() {
-  const cmpt = this.$root.$options.o2component;
-  cmpt.openInNewBrowser(true);
+  component.openInNewBrowser(true);
 }
 function startProcess(){
   o2.api.page.startProcess();
