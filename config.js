@@ -15,14 +15,17 @@ const proxy = {};
 (config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_']).forEach((path)=>{
     proxy['^/'+path] = {target: host}
 });
+proxy['^/x_component_'].bypass = function(req, res, proxyOptions) {
+    if (req.url.startsWith('/'+componentPath+'/')) return false;
+}
 
 let before = function(app){
-    app.use(function(req, res, next){
-        if(req.url.indexOf('/'+componentPath+'/')!==-1 ){
-            req.url = req.url.replace('/'+componentPath+'/', '/');
-        }
-        next();
-    });
+    // app.use(function(req, res, next){
+    //     if(req.url.indexOf('/'+componentPath+'/')!==-1 ){
+    //         req.url = req.url.replace('/'+componentPath+'/', '/');
+    //     }
+    //     next();
+    // });
     app.get('/x_desktop/res/config/config.json', function(req, res) {
         const configUrl = new URL(req.url, host);
         axios.get(configUrl.toString()).then((json)=>{
