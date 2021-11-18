@@ -8,6 +8,7 @@ module.exports = (api, option, rootOptions) => {
         },
         'scripts': {
             'o2-deploy': 'vue-cli-service build --dest ../../dest/'+name,
+            'o2-build': 'vue-cli-service build --dest ../../../target/o2server/servers/webServer/'+name,
             'deploy': 'vue-cli-service build && vue-cli-service deploy'
         }
     });
