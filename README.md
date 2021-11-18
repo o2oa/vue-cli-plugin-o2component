@@ -1,0 +1,1 @@
+o2-component的vue插件
