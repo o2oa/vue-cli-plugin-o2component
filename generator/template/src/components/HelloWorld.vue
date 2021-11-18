@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import {inject}  from 'vue'
 import {lp} from '@o2oa/component'
 import O2Task from './O2Task.vue'
 
