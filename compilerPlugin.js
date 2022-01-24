@@ -5,6 +5,9 @@ const pkg = require(path.resolve(process.cwd(), './package.json'));
 const componentPath = pkg.name;
 //const componentPath = "x_component_"+pkg.name.replace(/\./g, '_');
 const componentName = componentPath.replace('x_component_', '').split('_').join('.');
+const p = path.resolve(process.cwd(), './o2.config.js');
+const o2config = require(p);
+const globalWords = o2config.globals || ["webpackJsonp"];
 
 function compilerO2ComponentPlugin(options) {}
 
