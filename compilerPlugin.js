@@ -8,13 +8,14 @@ const componentName = componentPath.replace('x_component_', '').split('_').join(
 
 function compilerO2ComponentPlugin(options) {}
 
-function includeMain(fileList, filter, extname){
+function includeMain(fileList, filter, extname, every){
     let list = fileList.filter((v)=>{
         return v.startsWith(filter) && path.extname(v)===extname;
     });
     if (list && list.length){
-        list = list.map((css)=>{
-            return `../${componentPath}/` + css;
+        list = list.map((file)=>{
+            if (every) every(file);
+            return `../${componentPath}/` + file;
         });
         return '"'+list.join('", "')+'"';
     }
@@ -29,7 +30,20 @@ compilerO2ComponentPlugin.prototype.apply = function(compiler) {
         const css = includeMain(fileList, '$Main/css', '.css');
         if (css) mainFileContent += `    css: [${css}],\n`;
 
-        const js = includeMain(fileList, '$Main/js', '.js');
+        const js = includeMain(fileList, '$Main/js', '.js', (name)=>{
+            let code = compilation.assets[name].source();
+            globalWords.forEach((w)=>{
+                const reg1 = new RegExp('window\\.'+w, 'g');
+                const reg2 = new RegExp('window\\[\''+w+'\'\\]', 'g');
+                const reg3 = new RegExp('window\\["'+w+'"\\]', 'g');
+
+                code = code.replace(reg1, "winsow."+w+componentPath)
+                    .replace(reg2, "window['"+w+componentPath+"']")
+                    .replace(reg3, "window[\""+w+componentPath+"\"]");
+            });
+            compilation.assets[name].source = ()=>{return code};
+            compilation.assets[name].size = ()=>{return code.length};
+        });
         if (js) mainFileContent += `    js: [${js}],\n`;
 
         mainFileContent += `});`;
