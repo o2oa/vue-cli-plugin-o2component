@@ -10,7 +10,7 @@ const pkg = require(path.resolve(process.cwd(), './package.json'));
 const componentPath = pkg.name;
 //const componentName = componentPath.replace('x_component_', '').split('_').join('.');
 
-const host = `${(server.https) ? 'https' : 'http'}://${server.host}/${(!server.httpPort || server.httpPort==='80') ? '' : server.httpPort}`;
+const host = `${(server.https) ? 'https' : 'http'}://${server.host}${(!server.httpPort || server.httpPort==='80') ? '' : ':'+server.httpPort}`;
 const proxy = {};
 (config.components || []).concat(['o2_core', 'o2_lib', 'x_desktop', 'x_component_']).forEach((path)=>{
     proxy['^/'+path] = {target: host}
