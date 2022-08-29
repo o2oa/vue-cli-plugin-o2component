@@ -8,16 +8,18 @@ const componentName = componentPath.replace('x_component_', '').split('_').join(
 const p = path.resolve(process.cwd(), './o2.config.js');
 const o2config = require(p);
 const globalWords = o2config.globals || ["webpackJsonp"];
+const includeMainReg = o2config.includeMain || /(app\.)|(chunk-vendors\.)/;
 
 function compilerO2ComponentPlugin(options) {}
 
 function includeMain(fileList, filter, extname, every){
     let list = fileList.filter((v)=>{
-        return v.startsWith(filter) && path.extname(v)===extname;
+        const flag = v.startsWith(filter) && path.extname(v)===extname;
+        if (flag) if (every) every(v);
+        return flag && includeMainReg.test(v);
     });
     if (list && list.length){
         list = list.map((file)=>{
-            if (every) every(file);
             return `../${componentPath}/` + file;
         });
         return '"'+list.join('", "')+'"';
