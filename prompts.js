@@ -10,7 +10,7 @@ module.exports = () => {
             type: 'input',
             name: 'o2serverCenterPort',
             message: 'Input o2 center server port',
-            default: '20030'
+            default: '80'
         },
         {
             type: 'input',
