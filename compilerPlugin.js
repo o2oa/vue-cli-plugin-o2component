@@ -27,7 +27,8 @@ function includeMain(fileList, filter, extname, every){
     return '';
 }
 compilerO2ComponentPlugin.prototype.apply = function(compiler) {
-    compiler.plugin('emit', function(compilation, callback) {
+    // compiler.plugin('emit', function(compilation, callback) {
+    compiler.hooks.emit.tapAsync('compilerO2ComponentPlugin', function(compilation, callback) {
         const fileList = Object.keys(compilation.assets);
 
         let mainFileContent = `o2.component("${componentName}", {\n`;
