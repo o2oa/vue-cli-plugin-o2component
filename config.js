@@ -23,7 +23,7 @@ const o={
         const cookie = proxyRes.headers['set-cookie'];
         if (cookie && cookie[0]){
             const host = req.headers['host'].split(':')[0];
-            cookie[0] = cookie[0].replace(/(domain=)\.([^\s;]+)/, '$1'+host);
+            cookie[0] = cookie[0].replace(/(domain=)([^;]+)/, '$1'+host);
         }
     }
 }
